@@ -1,0 +1,42 @@
+name: LaTeX Build Status
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  latex-build:
+    runs-on: ubuntu-latest
+    name: Build LaTeX Documents
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Compile ACM template
+      uses: xu-cheng/latex-action@v4
+      with:
+        root_file: sample.tex
+        
+    - name: Compile IEEE Magazine template
+      uses: xu-cheng/latex-action@v4
+      with:
+        root_file: sample-ieee-magazine.tex
+        
+    - name: Compile Elsevier template
+      uses: xu-cheng/latex-action@v4
+      with:
+        root_file: sample-elsevier.tex
+    
+    - name: Upload all PDFs
+      uses: actions/upload-artifact@v4
+      if: success()
+      with:
+        name: latex-pdfs
+        path: |
+          sample.pdf
+          sample-ieee-magazine.pdf
+          sample-elsevier.pdf
+        retention-days: 30
