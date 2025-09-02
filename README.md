@@ -1,6 +1,6 @@
 # Enhanced LaTeX Comment System with FontAwesome Icons
 
-[![LaTeX Build Status](https://github.com/USER/REPO/workflows/LaTeX%20Build%20Status/badge.svg)](https://github.com/USER/REPO/actions)
+[![LaTeX Build Status](https://github.com/USER/REPO/workflows/LaTeX%20Build%20Status/badge.svg)](https://github.com/sergiorico/latex_comments_system/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![LaTeX](https://img.shields.io/badge/LaTeX-008080?logo=latex&logoColor=white)](https://www.latex-project.org/)
 [![FontAwesome](https://img.shields.io/badge/FontAwesome-339AF0?logo=fontawesome&logoColor=white)](https://fontawesome.com/)
