@@ -17,16 +17,19 @@ jobs:
       uses: xu-cheng/latex-action@v4
       with:
         root_file: sample.tex
+        args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
         
     - name: Compile IEEE Magazine template
       uses: xu-cheng/latex-action@v4
       with:
         root_file: sample-ieee-magazine.tex
+        args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
         
     - name: Compile Elsevier template
       uses: xu-cheng/latex-action@v4
       with:
         root_file: sample-elsevier.tex
+        args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
         
     - name: Rename PDFs for release
       run: |
