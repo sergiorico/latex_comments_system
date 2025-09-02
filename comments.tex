@@ -1,0 +1,156 @@
+%========================= LaTeX Unified Comment System =========================
+% File: comments.tex  —  inline notes + author comments (ACM/IEEE/etc friendly)
+
+% 1) Packages
+\RequirePackage{xcolor}
+\RequirePackage{xspace}
+\RequirePackage{fontawesome5}
+\RequirePackage{etoolbox}
+
+% 2) Global toggle
+\newif\ifshowcomments
+\showcommentstrue            % set \showcommentsfalse for camera-ready
+
+% 3) Colors
+\definecolor{authoronecolor}{RGB}{0,102,204}
+\definecolor{authortwocolor}{RGB}{204,0,0}
+\definecolor{authorthreecolor}{RGB}{0,153,0}
+\definecolor{authorfourcolor}{RGB}{128,0,128}
+
+\definecolor{hintcite}{RGB}{0,102,204}
+\definecolor{hintlang}{RGB}{0,153,0}
+\definecolor{hintedit}{RGB}{204,0,0}
+\definecolor{hintwarn}{RGB}{204,102,0}
+\definecolor{hintcheck}{RGB}{90,90,90}
+\definecolor{hintfig}{RGB}{128,0,128}
+\definecolor{hinttodo}{RGB}{255,140,0}
+\definecolor{hintreview}{RGB}{138,43,226}
+
+% Map logical types to actual color names (avoid @ in color names)
+\colorlet{cmtcol-cite}{hintcite}
+\colorlet{cmtcol-lang}{hintlang}
+\colorlet{cmtcol-edit}{hintedit}
+\colorlet{cmtcol-warn}{hintwarn}
+\colorlet{cmtcol-check}{hintcheck}
+\colorlet{cmtcol-fig}{hintfig}
+\colorlet{cmtcol-todo}{hinttodo}
+\colorlet{cmtcol-review}{hintreview}
+
+% Helper: build the color name string from the type
+\newcommand{\cmtcolor}[1]{cmtcol-#1}
+
+% Helper: map comment types to FontAwesome icons
+\newcommand{\cmticon}[1]{%
+  \if\relax\detokenize{#1}\relax
+    \faIcon{exclamation-triangle} % default for empty
+  \else
+    \ifstrequal{#1}{cite}{\faIcon{quote-left}}{%
+    \ifstrequal{#1}{edit}{\faIcon{pencil-alt}}{%
+    \ifstrequal{#1}{lang}{\faIcon{language}}{%
+    \ifstrequal{#1}{warn}{\faIcon{exclamation-triangle}}{%
+    \ifstrequal{#1}{check}{\faIcon{check-circle}}{%
+    \ifstrequal{#1}{fig}{\faIcon{image}}{%
+    \ifstrequal{#1}{todo}{\faIcon{list-ul}}{%
+    \ifstrequal{#1}{review}{\faIcon{eye}}{%
+      \faIcon{exclamation-triangle}% default for unknown
+    }}}}}}}}%
+  \fi
+}
+
+% 4) Names and counter
+\newcommand{\AuthorOneName}{Author 1}
+\newcommand{\AuthorTwoName}{Author 2}
+\newcommand{\AuthorThreeName}{Author 3}
+\newcommand{\AuthorFourName}{Author X}
+\newcounter{commentcounter}
+
+% 5) Header helper
+\newcommand{\printcommentheader}[2]{%
+  {\color{#1}\textbf{[#2 \thecommentcounter]}}%
+}
+
+% 6) Author comment macros (inline or block)
+\ifshowcomments
+  \long\def\authorone#1{%
+    \ifhmode
+      \printcommentheader{authoronecolor}{\AuthorOneName}%
+      {\color{authoronecolor} #1}\space\stepcounter{commentcounter}%
+    \else
+      \printcommentheader{authoronecolor}{\AuthorOneName}\par\smallskip
+      {\color{authoronecolor}#1}\par\stepcounter{commentcounter}%
+    \fi
+  }
+  \long\def\authortwo#1{%
+    \ifhmode
+      \printcommentheader{authortwocolor}{\AuthorTwoName}%
+      {\color{authortwocolor} #1}\space\stepcounter{commentcounter}%
+    \else
+      \printcommentheader{authortwocolor}{\AuthorTwoName}\par\smallskip
+      {\color{authortwocolor}#1}\par\stepcounter{commentcounter}%
+    \fi
+  }
+  \long\def\authorthree#1{%
+    \ifhmode
+      \printcommentheader{authorthreecolor}{\AuthorThreeName}%
+      {\color{authorthreecolor} #1}\space\stepcounter{commentcounter}%
+    \else
+      \printcommentheader{authorthreecolor}{\AuthorThreeName}\par\smallskip
+      {\color{authorthreecolor}#1}\par\stepcounter{commentcounter}%
+    \fi
+  }
+  \long\def\authorfour#1{%
+    \ifhmode
+      \printcommentheader{authorfourcolor}{\AuthorFourName}%
+      {\color{authorfourcolor} #1}\space\stepcounter{commentcounter}%
+    \else
+      \printcommentheader{authorfourcolor}{\AuthorFourName}\par\smallskip
+      {\color{authorfourcolor}#1}\par\stepcounter{commentcounter}%
+    \fi
+  }
+\else
+  \newcommand{\authorone}[1]{}
+  \newcommand{\authortwo}[1]{}
+  \newcommand{\authorthree}[1]{}
+  \newcommand{\authorfour}[1]{}
+\fi
+
+% 7) Aliases/utilities
+\newcommand{\aone}{\authorone}
+\newcommand{\atwo}{\authortwo}
+\newcommand{\athree}{\authorthree}
+\newcommand{\ax}{\authorfour}
+
+% Natural author name commands - predefined based on common names
+% These need to be defined in the document after setting author names
+\newcommand{\createauthorcommand}[2]{%
+  % #1 = command name (without backslash), #2 = author number (1,2,3,4)
+  \ifnum#2=1\relax
+    \expandafter\newcommand\csname#1\endcsname{\authorone}%
+  \else\ifnum#2=2\relax
+    \expandafter\newcommand\csname#1\endcsname{\authortwo}%
+  \else\ifnum#2=3\relax
+    \expandafter\newcommand\csname#1\endcsname{\authorthree}%
+  \else\ifnum#2=4\relax
+    \expandafter\newcommand\csname#1\endcsname{\authorfour}%
+  \fi\fi\fi\fi
+}
+
+% Utility commands
+\newcommand{\resetcomments}{\setcounter{commentcounter}{0}}
+\newcommand{\commentcount}{\textit{[Total comments: \thecommentcounter]}}
+
+% Show/hide comments commands for easy toggling
+\newcommand{\showcomments}{\showcommentstrue}
+\newcommand{\hidecomments}{\showcommentsfalse}
+
+% 8) Inline notes (public API = \addnote)
+%    Usage: \addnote[<type>]{<text>}  (type defaults to 'cite')
+%    Types: cite, edit, lang, warn, check, fig, todo, review
+\ifshowcomments
+  \DeclareRobustCommand{\addnote}[2][cite]{%
+    \textcolor{\cmtcolor{#1}}{\cmticon{#1}~\textbf{[#1]}~#2}\xspace
+  }
+\else
+  \DeclareRobustCommand{\addnote}[2][]{}
+\fi
+%==============================================================================%

@@ -1,0 +1,198 @@
+\documentclass[manuscript]{acmart}
+
+\settopmatter{printacmref=false}
+\renewcommand\footnotetextcopyrightpermission[1]{}
+\pagestyle{plain}
+
+\usepackage{enumitem}
+\input{comments.tex}
+
+% Author name aliases for comment system
+\renewcommand{\AuthorOneName}{John Snow}
+\renewcommand{\AuthorTwoName}{Pepito Perez}
+\renewcommand{\AuthorThreeName}{Maria Garcia}
+\renewcommand{\AuthorFourName}{Alex Chen}
+
+% Create natural author commands based on first names
+\createauthorcommand{john}{1}
+\createauthorcommand{pepito}{2} 
+\createauthorcommand{maria}{3}
+\createauthorcommand{alex}{4}
+
+% Toggle comment visibility (set to false for camera-ready)
+\showcomments
+
+\title{Enhanced LaTeX Comment System with FontAwesome Icons}
+
+\author{Anonymous Author 1}
+\affiliation{%
+  \institution{Anonymous University}
+  \country{Country}
+}
+\email{anonymous1@example.org}
+
+\author{Anonymous Author 2}
+\affiliation{%
+  \institution{Anonymous Research Institute}
+  \country{Country}
+}
+\email{anonymous2@example.org}
+
+\begin{document}
+
+\begin{abstract}
+This document demonstrates an enhanced LaTeX comment system that incorporates FontAwesome icons for different types of editorial comments. The system supports multiple comment types including citations, edits, language improvements, warnings, checks, figures, todos, and reviews. Each comment type is visually distinguished by both color coding and distinctive icons, making the review process more efficient and organized.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+The collaborative writing process in academic publishing requires efficient communication between authors, reviewers, and editors. Traditional comment systems often lack visual distinction between different types of feedback, making it difficult to prioritize and categorize comments during the revision process.
+
+\addnote[cite]{This claim needs empirical support from recent literature}
+
+This enhanced comment system addresses these limitations by introducing FontAwesome icons alongside color-coded comments. The system maintains backward compatibility with existing LaTeX workflows while providing enhanced visual clarity for different comment categories.
+
+\john{We should consider expanding this introduction to include more background on collaborative writing challenges in academic publishing.}
+
+\section{System Overview}
+
+\subsection{Comment Types and Icons}
+
+The enhanced system supports eight distinct comment types, each with a unique icon and color scheme. Table~\ref{tab:icons} provides a comprehensive overview of available comment types.
+
+\begin{table}[h]
+  \caption{Comment Types and Their Associated Icons}
+  \label{tab:icons}
+  \begin{tabular}{lll}
+    \toprule
+    Type & Icon & Purpose \\
+    \midrule
+    cite & \faIcon{quote-left} & Citation requests and reference suggestions \\
+    edit & \faIcon{pencil-alt} & Text editing and structural improvements \\
+    lang & \faIcon{language} & Language and writing style enhancements \\
+    warn & \faIcon{exclamation-triangle} & Warnings and critical issues \\
+    check & \faIcon{check-circle} & Verified content and confirmations \\
+    fig & \faIcon{image} & Figure-related suggestions and improvements \\
+    todo & \faIcon{list-ul} & Task items and pending work \\
+    review & \faIcon{eye} & Items requiring peer review \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\addnote[fig]{Consider adding visual examples of each icon in actual use}
+
+\subsection{Implementation Features}
+
+The system is implemented as a single LaTeX file that can be easily integrated into existing document workflows. Key features include:
+
+\begin{itemize}
+\item \textbf{Visual Distinction:} \addnote[edit]{Expand this list with more detail} Each comment type uses both unique colors and FontAwesome icons
+\item \textbf{Author Support:} Multiple author comment streams with customizable names
+\item \textbf{Toggle Control:} \addnote[todo]{Add example of toggle usage} Comments can be easily hidden for camera-ready versions
+\item \textbf{Counter System:} Automatic numbering and total comment counting
+\end{itemize}
+
+\pepito{The implementation section could benefit from code examples showing how to customize the system.}
+
+\section{Usage Examples}
+
+\subsection{Basic Comment Types}
+
+The following examples demonstrate the various comment types in context:
+
+\paragraph{Citation Comments:} When referencing existing work \addnote[cite]{Add Smith et al. 2023 reference here}, the cite comment type helps identify missing references.
+
+\paragraph{Editorial Suggestions:} Content that requires revision \addnote[edit]{Rewrite this sentence for clarity} can be marked with edit comments.
+
+\paragraph{Language Improvements:} Text with complex terminology \addnote[lang]{Simplify this technical jargon for broader audience} benefits from language-specific feedback.
+
+\paragraph{Warnings:} Critical issues \addnote[warn]{This data contradicts findings in Section 2} require immediate attention through warning comments.
+
+\maria{Consider reorganizing this section to group similar comment types together for better flow.}
+
+\subsection{Workflow Integration}
+
+The system integrates seamlessly with standard LaTeX compilation workflows. Authors can use the following commands:
+
+\addnote[check]{Verified that all compilation commands work correctly}
+
+\begin{enumerate}
+\item Compile with \texttt{pdflatex document.tex}
+\item Process bibliography with \texttt{bibtex document}
+\item Final compilation with \texttt{pdflatex document.tex} (twice)
+\end{enumerate}
+
+\addnote[review]{This workflow section needs validation from other team members}
+
+\section{Advanced Features}
+
+\subsection{Author Comment Streams}
+
+The system supports multiple author comment streams with customizable names. In this document, we have configured:
+
+\begin{itemize}
+\item \textbf{John Snow} (Author 1): Primary content development
+\item \textbf{Pepito Perez} (Author 2): Technical review and methodology  
+\item \textbf{Maria Garcia} (Author 3): Language and presentation
+\item \textbf{Alex Chen} (Author 4): General review and coordination
+\end{itemize}
+
+\alex{The author alias system makes it much easier to track who provided which feedback during collaborative writing.}
+
+\subsection{Comment Management}
+
+The system provides utilities for comment management:
+
+\addnote[todo]{Document the comment counter reset functionality}
+
+\begin{itemize}
+\item Comment counting: \verb|\commentcount| displays total comment count
+\item Counter reset: \verb|\resetcomments| for chapter-based documents
+\item Visibility toggle: \verb|\showcomments| and \verb|\hidecomments| for easy control
+\item Natural commands: Use author first names like \verb|\pepito{comment}| instead of \verb|\atwo{comment}|
+\end{itemize}
+
+\subsection{Advanced Usage Examples}
+
+The system now supports natural author name commands and convenient comment type shortcuts:
+
+\paragraph{Natural Author Commands:} Instead of using generic aliases like \verb|\atwo|, you can now use natural names:
+\begin{itemize}
+\item \verb|\john{comment}| for John Snow's comments
+\item \verb|\pepito{comment}| for Pepito Perez's comments  
+\item \verb|\maria{comment}| for Maria Garcia's comments
+\item \verb|\alex{comment}| for Alex Chen's comments
+\end{itemize}
+
+\paragraph{Convenient Comment Types:} Use specific comment commands with simple syntax:
+\begin{itemize}
+\item \verb|\addnote[cite]{Add Smith reference}| \addnote[cite]{Add Smith reference here}
+\item \verb|\addnote[todo]{Fix grammar}| \addnote[todo]{Fix grammar in this paragraph}
+\item \verb|\addnote[warn]{Check data}| \addnote[warn]{Check data consistency}
+\end{itemize}
+
+\paragraph{Visibility Control:} Toggle all comments with simple commands:
+\begin{itemize}
+\item \verb|\showcomments| - Make all comments visible (default)
+\item \verb|\hidecomments| - Hide all comments for camera-ready version
+\end{itemize}
+
+\section{Conclusion}
+
+This enhanced comment system significantly improves the collaborative writing experience by providing visual clarity and organization to the review process. The combination of color coding and FontAwesome icons makes it easy to identify and prioritize different types of feedback.
+
+\addnote[review]{Final review needed before submitting this work}
+
+Future enhancements could include integration with version control systems and automated comment analysis tools \cite{Lamport:LaTeX}.
+
+\john{Great work on this system! It will definitely improve our collaboration workflow.}
+
+\bigskip
+\noindent\commentcount
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{references}
+
+\end{document}

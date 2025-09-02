@@ -1,0 +1,49 @@
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.pdf
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+*.nav
+*.snm
+*.vrb
+*.xdv
+*.bcf
+*.run.xml
+*.acn
+*.glo
+*.gls
+*.ist
+*.xdy
+*.ilg
+*.ind
+*.idx
+*.dvi
+*.ps
+*.eps
+*.gz
+*.bak
+*.tmp
+
+# VS Code settings
+.vscode/
+
+# Python virtual environments
+.venv/
+__pycache__/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Keep GitHub workflows but ignore other GitHub files
+!.github/workflows/
+.github/*
+!.github/workflows/*
