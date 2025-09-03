@@ -29,25 +29,29 @@ This repository provides an enhanced LaTeX comment system with FontAwesome icons
 | 📋 | `todo` | Gray | TODO items |
 | 👁️ | `review` | Brown | Review suggestions |
 
-## Templates
+## Templates & Examples
 
-### 1. ACM Manuscript (`sample.tex`)
+The repository includes **pre-compiled PDF examples** that you can view immediately:
+
+### 1. ACM Manuscript ([`sample.tex`](sample.tex) → [`sample.pdf`](sample.pdf))
 - **Format**: ACM article format
 - **Pages**: 3 pages
-- **Compilation**: `pdflatex sample.tex`
 - **Features**: Full demonstration with icon table and examples
+- **📄 [View PDF](sample.pdf)**
 
-### 2. IEEE Magazine (`sample-ieee-magazine.tex`)  
+### 2. IEEE Magazine ([`sample-ieee-magazine.tex`](sample-ieee-magazine.tex) → [`sample-ieee-magazine.pdf`](sample-ieee-magazine.pdf))  
 - **Format**: IEEE magazine style
 - **Pages**: 2 pages
-- **Compilation**: `pdflatex sample-ieee-magazine.tex`
 - **Features**: Two-column layout with condensed examples
+- **📄 [View PDF](sample-ieee-magazine.pdf)**
 
-### 3. Elsevier Single-Column (`sample-elsevier.tex`)
+### 3. Elsevier Single-Column ([`sample-elsevier.tex`](sample-elsevier.tex) → [`sample-elsevier.pdf`](sample-elsevier.pdf))
 - **Format**: Elsevier article format
 - **Pages**: 5 pages (single-column)
-- **Compilation**: `pdflatex sample-elsevier.tex`
 - **Features**: Extended examples in single-column layout
+- **📄 [View PDF](sample-elsevier.pdf)**
+
+**Compilation**: If you want to recompile, use `pdflatex <filename>.tex`
 
 ## Quick Start
 
@@ -120,34 +124,35 @@ The system requires these LaTeX packages:
 
 ## Files
 
+### Core System
 - `comments.tex` - Core comment system implementation
-- `sample.tex` - ACM manuscript demonstration
-- `sample-ieee-magazine.tex` - IEEE magazine demonstration  
-- `sample-elsevier.tex` - Elsevier single-column demonstration
 - `references.bib` - Clean bibliography for all templates
+
+### LaTeX Templates & Examples
+- `sample.tex` + `sample.pdf` - ACM manuscript demonstration
+- `sample-ieee-magazine.tex` + `sample-ieee-magazine.pdf` - IEEE magazine demonstration  
+- `sample-elsevier.tex` + `sample-elsevier.pdf` - Elsevier single-column demonstration
+
+**📄 All PDFs are pre-compiled and ready to view!**
 
 ## Template Status
 
-✅ **ACM Manuscript**: 3 pages, fully functional with all icons  
-✅ **IEEE Magazine**: 2 pages, compact layout with all features  
-✅ **Elsevier Single-Column**: 5 pages, extended examples working
+✅ **ACM Manuscript** ([sample.pdf](sample.pdf)): 3 pages, fully functional with all icons  
+✅ **IEEE Magazine** ([sample-ieee-magazine.pdf](sample-ieee-magazine.pdf)): 2 pages, compact layout with all features  
+✅ **Elsevier Single-Column** ([sample-elsevier.pdf](sample-elsevier.pdf)): 5 pages, extended examples working
 
-All templates compile successfully with FontAwesome icons displaying properly.
+**All templates include pre-compiled PDFs** - view them directly in your browser! No compilation needed to see the results.
 
-## Continuous Integration
+## Getting Started
 
-This repository includes GitHub Actions that automatically:
+**📄 View Examples Immediately**: All templates include pre-compiled PDFs - just click the links above!
 
-- **Build Check**: Compiles all templates on every push/PR to ensure they work
-- **Release PDFs**: Creates releases with compiled PDFs when you tag a version
+**🚀 Use in Your Project**:
+1. Download `comments.tex` 
+2. Include it in your LaTeX document: `\input{comments.tex}`
+3. Start using `\addnote[type]{comment}` or natural author commands
 
-### Usage:
-1. **Automatic builds**: Push changes and GitHub will compile all templates
-2. **Create releases**: Tag a version with `git tag v1.0 && git push --tags` to generate a release with PDFs
-
-### Artifacts:
-- Build artifacts are available for 30 days after each successful build
-- Release PDFs are permanently available on the releases page
+**🔄 Recompile if Needed**: Use `pdflatex filename.tex` to regenerate PDFs
 
 ## Acknowledgments
 
